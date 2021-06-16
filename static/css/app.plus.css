@@ -1,0 +1,9 @@
+.dropdown-menu {
+    top: 3.9em;
+    border-radius: 3px;
+    border-top: 3px solid darkmagenta;
+}
+.site-footer .copy {
+    border-top: 3px solid darkmagenta;
+    margin: 5px auto;
+}
