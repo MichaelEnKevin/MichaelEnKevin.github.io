@@ -1,18 +1,21 @@
-header::after {
-    content:"";
-    border:1px solid darkmagenta;
-    width:100%;
-    display: block;
+header {
+    border-bottom: solid #bbdefb 2px;
+}
+body {
+    background-color: #ecf3fa;
+}
+.bg-light-blue {
+    background-color: #e3eef7;
 }
 .ml-auto, .mx-auto {
     margin-left: auto!important;
 }
 .dropdown-menu {
-    top: 3.9em;
+    top: 3em !important;
     border-radius: 3px;
-    border-top: 3px solid darkmagenta;
+    border-top: 3px solid #03a9f4;
 }
 .site-footer .copy {
-    border-top: 3px solid darkmagenta;
+    border-top: 2px solid #03a9f4;
     margin: 5px auto;
 }
