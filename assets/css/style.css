@@ -4453,6 +4453,8 @@ fieldset:disabled .btn {
 .navbar-brand {
   font-size: 1.25rem;
   white-space: nowrap;
+  padding-top: 14px;
+  padding-bottom: 14px;
 }
 
 .navbar-nav {
