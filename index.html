@@ -99,7 +99,7 @@ Header START -->
 
                         <!-- Nav item 1 Demos -->
                         <li class="nav-item dropdown"><a class="nav-link active"
-                            href="#" id="homeMenu">简优讯息</a></li>
+                            href="index.html" id="homeMenu">简优</a></li>
 
                         <!-- Nav item 2 Post -->
                         <li class="nav-item dropdown dropdown-fullwidth"><a
@@ -666,7 +666,7 @@ Footer START -->
                 <div class="row align-items-center justify-content-md-between py-4">
                     <div class="col-md-6">
                         <!-- Copyright -->
-                        <div
+                        <div style="font-size: 1.2rem;"
                             class="text-center text-md-start text-primary-hover text-muted">©2021
                             简优软件 <a class="fs-5 ms-sm-5 ms-md-5 ms-5"
                                     href="tencent://message/?uin=394656693&Menu=yes& Service=300&sigT=42a1e5347953b64c5ff3980f8a6e644d4b31456cb0b6ac6b27663a3c4dd0f4aa14a543b1716f9d45"><i
@@ -705,13 +705,21 @@ JS libraries, plugins and custom scripts -->
     <script src="assets/webui-popover/dist/jquery.webui-popover.js"></script>
     <script type="text/javascript">
         $(function() {
+            $('.fa-qq')
+                    .webuiPopover(
+                            {
+                                trigger : 'hover',
+                                placement : 'auto',
+                                title : 'QQ:3571324189',
+                                content : '<img src="assets/images/jyqq.jpg" style="width:200px;height:264px;" alt="简优软件" id="met-weixin-img" class="d-block">'
+                            });
             $('.fa-weixin')
                     .webuiPopover(
                             {
                                 trigger : 'hover',
                                 placement : 'auto',
-                                title : 'wx:daziranxuanze',
-                                content : '<img src="assets/images/weixin-qrcode.jpg" style="width:215px;height:215px;" alt="MetInfo" id="met-weixin-img" class="d-block">'
+                                title : 'wx:jianyou_plus',
+                                content : '<img src="assets/images/jywx.jpg" style="width:200px;height:264px;" alt="简优软件" id="met-weixin-img" class="d-block">'
                             });
         });
     </script>
