@@ -2167,12 +2167,29 @@ progress {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
+
+
+.arrow-hover [data-controls='prev'] {
+  left: 0px !important;
+}
+
+.arrow-hover [data-controls='next'] {
+  right: 0px !important;
+}
 }
 
 @media (max-width: 767.98px) {
   .table-responsive-md {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .arrow-hover [data-controls='prev'] {
+    left: 0px !important;
+  }
+  
+  .arrow-hover [data-controls='next'] {
+    right: 0px !important;
   }
 }
 
