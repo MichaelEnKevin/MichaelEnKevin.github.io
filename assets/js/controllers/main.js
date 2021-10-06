@@ -18,25 +18,10 @@
 
 require(['jquery','service', 'util', 'template','bootstrap','tiny_slider','sticky','functions','webui_popover']
 , function($,service,util,template,bootstrap,tns,sticky,functions,webui_popover) {
-   $('.fa-qq').webuiPopover(
-      {
-         trigger : 'hover',
-         placement : 'auto',
-         title : 'QQ:3571324189',
-         content : '<img src="assets/images/jyqq.jpg" style="width:200px;height:264px;" alt="简优软件" id="met-weixin-img" class="d-block">'
-   });
-   $('.fa-weixin').webuiPopover(
-      {
-         trigger : 'hover',
-         placement : 'auto',
-         title : 'wx:jianyou_plus',
-         content : '<img src="assets/images/jywx.jpg" style="width:200px;height:264px;" alt="简优软件" id="met-weixin-img" class="d-block">'
-   });
 
    service.getCopyData().then(function(body){
       if(body.length > 0) {
          var item = body[0];
-         console.log(item);
          $(".company_info").html("@"+ item.copy_year + " "+ item.short_company_name);
          $(".copyright a:first").attr("href",item.qq_link);
          $(".navbar-brand img").each(function(obj,index){
@@ -44,6 +29,22 @@ require(['jquery','service', 'util', 'template','bootstrap','tiny_slider','stick
          });
          $(".short_company_name").html(item.short_company_name);
          $("#homeMenu").html(item.menu[0]);
+         $("title").html(item.short_company_name);
+
+         $('.fa-qq').webuiPopover(
+            {
+               trigger : 'hover',
+               placement : 'auto',
+               title : 'QQ:3571324189',
+               content : '<img src="' + item.qqqrcode+'" style="width:200px;height:264px;" alt="' + item.short_company_name+'" id="met-weixin-img" class="d-block">'
+         });
+         $('.fa-weixin').webuiPopover(
+            {
+               trigger : 'hover',
+               placement : 'auto',
+               title : 'wx:jianyou_plus',
+               content : '<img src="' + item.wxqrcode+'" style="width:200px;height:264px;" alt="' + item.short_company_name+'" id="met-weixin-img" class="d-block">'
+         });
       }
    }, function(error){
       console.log(error);
@@ -53,22 +54,35 @@ require(['jquery','service', 'util', 'template','bootstrap','tiny_slider','stick
    service.getTemplateData().then(function(body){
       if(body.length > 0) {
          var item = body[0];
-         console.log(item);
          var html = template('tpl-main-card', item);
          // main card
          $("#main-card").html(html);
 
-         var html = template('tpl-right12-card', item);
-         $("#right12-card").html(html);
+         if(body.length > 1) {
+            item = body[1];
+            html = template('tpl-right12-card', item);
+            $("#right12-card").html(html);
+         }
 
-         var html = template('tpl-right6-card', item);
-         $("#right6-card").html(html);
+         if(body.length > 2) {
+            item = body[2];
+            html = template('tpl-right6-card', item);
+            $("#right6-card").html(html);
+         }
 
-         var html = template('tpl-right6-card', item);
-         $("#right6_1-card").html(html);
+         if(body.length > 3) {
+            item = body[3];
+            html = template('tpl-right6-card', item);
+            $("#right6_1-card").html(html);
+         }
 
-         var html = template('tpl-common-card', item);
-         $(".tiny-slider-inner").html(html+html+html+html+html+html);
+         if(body.length > 4) {
+            for(var i=4;i<body.length;i++) {
+               item = body[i];
+               html = template('tpl-common-card', item);
+               $(".tiny-slider-inner").html($(".tiny-slider-inner").html()+html);
+            }
+         }
 
          e.init();
       }
