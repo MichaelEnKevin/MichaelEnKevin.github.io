@@ -17,8 +17,14 @@
 });
 
 require(['jquery','service', 'util', 'template','bootstrap','tiny_slider','sticky','functions','webui_popover']
-, function($,service,util,template,bootstrap,tns,sticky,functions,webui_popover) {
+, function($,service,util,template,bootstrap,tiny_slider,sticky,functions,webui_popover) {
+   // 功能初始化
+   // card点击开关toggle事件
+   $("body").on("click",".description",function(){
+      $(this).fadeToggle("slow");
+   });
 
+   // 版权信息内容
    service.getCopyData().then(function(body){
       if(body.length > 0) {
          var item = body[0];
@@ -30,6 +36,7 @@ require(['jquery','service', 'util', 'template','bootstrap','tiny_slider','stick
          $(".short_company_name").html(item.short_company_name);
          $("#homeMenu").html(item.menu[0]);
          $("title").html(item.short_company_name);
+         $(".my-2 .nav .nav-item span").html(item.slogan);
 
          $('.fa-qq').webuiPopover(
             {
@@ -50,6 +57,7 @@ require(['jquery','service', 'util', 'template','bootstrap','tiny_slider','stick
       console.log(error);
    });
 
+   // 模板内容
    //get source form html
    service.getTemplateData().then(function(body){
       if(body.length > 0) {

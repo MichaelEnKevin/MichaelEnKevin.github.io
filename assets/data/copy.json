@@ -2,14 +2,14 @@
     {
         "full_company_name":"简优信息科技",
         "short_company_name":"简优信息",
-        "favicon":"assets/images/j-original.png",
-        "logo":"assets/images/j-original.png",
+        "favicon":"assets/images/j-original-blue.png",
+        "logo":"assets/images/j-original-blue.png",
         "description":"简优 简优信息 简优软件",
         "brand":"简优",
         "copy_year":"2021",
         "qq_link":"tencent://message/?uin=394656693&Menu=yes& Service=300&sigT=42a1e5347953b64c5ff3980f8a6e644d4b31456cb0b6ac6b27663a3c4dd0f4aa14a543b1716f9d45",
         "menu":["简讯"],
-        "slogan":"简洁优质的资讯",
+        "slogan":"简洁优质的生活资讯",
         "wxqrcode":"assets/images/jywx.png",
         "qqqrcode":"assets/images/jyqq.png"
     }

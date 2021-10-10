@@ -13327,7 +13327,7 @@ header .navbar-nav .nav-link.active:before {
 }
 
 .navbar-sticky-on .navbar-brand .navbar-brand-item {
-  height: 90px;
+  height: 92px;
 }
 
 @-webkit-keyframes fadeInDown {
@@ -13393,14 +13393,14 @@ header .navbar-nav .nav-link.active:before {
 }
 
 .navbar-brand .navbar-brand-item {
-  height: 90px;
+  height: 92px;
   display: block;
   width: auto;
 }
 
 @media (max-width: 767.98px) {
   .navbar-brand .navbar-brand-item {
-    height: 90px;
+    height: 92px;
   }
 }
 
