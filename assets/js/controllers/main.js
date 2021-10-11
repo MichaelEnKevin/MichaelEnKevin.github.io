@@ -3,7 +3,7 @@
  */
  require.config({
    paths: {
-      'jquery': 'assets/js/common/jquery.slim.min',
+      'jquery': 'assets/js/common/jquery.min',
       'service':'assets/js/services/service',
       'util':'assets/js/util/util',
       'template':'assets/js/common/template-web',
@@ -20,8 +20,8 @@ require(['jquery','service', 'util', 'template','bootstrap','tiny_slider','stick
 , function($,service,util,template,bootstrap,tiny_slider,sticky,functions,webui_popover) {
    // 功能初始化
    // card点击开关toggle事件
-   $("body").on("click",".description",function(){
-      $(this).fadeToggle("slow");
+   $("body").on("click",".card",function(){
+      $(".description",this).fadeToggle("5000");
    });
 
    // 版权信息内容
