@@ -4,6 +4,7 @@
  require.config({
    paths: {
       'jquery': 'assets/js/common/jquery.min',
+      'base64': 'assets/js/common/jquery.base64',
       'service':'assets/js/services/service',
       'util':'assets/js/util/util',
       'template':'assets/js/common/template-web',
@@ -16,12 +17,13 @@
    waitsecond:0
 });
 
-require(['jquery','service', 'util', 'template','bootstrap','tiny_slider','sticky','functions','webui_popover']
-, function($,service,util,template,bootstrap,tiny_slider,sticky,functions,webui_popover) {
+require(['jquery','base64','service', 'util', 'template','bootstrap','tiny_slider','sticky','functions','webui_popover']
+, function($,base64,service,util,template,bootstrap,tiny_slider,sticky,functions,webui_popover) {
+   var jq = $.noConflict();
    // 功能初始化
    // card点击开关toggle事件
    $("body").on("click",".card",function(){
-      $(".description",this).fadeToggle("5000");
+      $(".description",this).slideToggle("5000");
    });
 
    // 版权信息内容
@@ -62,33 +64,55 @@ require(['jquery','service', 'util', 'template','bootstrap','tiny_slider','stick
    service.getTemplateData().then(function(body){
       if(body.length > 0) {
          var item = body[0];
+         // base64解码
+         item.description = $.base64.atob(item.description, true);
          var html = template('tpl-main-card', item);
          // main card
          $("#main-card").html(html);
 
          if(body.length > 1) {
             item = body[1];
+            // base64解码
+            item.description = $.base64.atob(item.description, true);
             html = template('tpl-right12-card', item);
             $("#right12-card").html(html);
          }
 
          if(body.length > 2) {
             item = body[2];
+            // base64解码
+            item.description = $.base64.atob(item.description, true);
             html = template('tpl-right6-card', item);
             $("#right6-card").html(html);
          }
 
          if(body.length > 3) {
             item = body[3];
+            // base64解码
+            item.description = $.base64.atob(item.description, true);
             html = template('tpl-right6-card', item);
             $("#right6_1-card").html(html);
          }
 
          if(body.length > 4) {
+            var row = '';
             for(var i=4;i<body.length;i++) {
+
+               if(i%4 == 0) {
+                  row = '<div class="row g-4">';
+
+               }
                item = body[i];
-               html = template('tpl-common-card', item);
-               $(".tiny-slider-inner").html($(".tiny-slider-inner").html()+html);
+               // base64解码
+               item.description = $.base64.atob(item.description, true);
+               html = '<div class="col-md-3">';
+               html += template('tpl-common-card', item);
+               html +='</div>';
+               row += html;
+               if((i+1)%4 == 0 || (i+1)==body.length) {
+                  row += '</div>';
+                  $("#common_list").append(row);
+               }
             }
          }
 
