@@ -12,13 +12,19 @@
       'tiny_slider':'assets/vendor/tiny-slider/tiny-slider',
       'sticky':'assets/vendor/sticky-js/sticky.min',
       'functions':'assets/js/functions',
-      'webui_popover':'assets/webui-popover/dist/jquery.webui-popover'
+      'webui_popover':'assets/webui-popover/dist/jquery.webui-popover',
+      'toast':'assets/js/lib/toast'
+   },shim:{
+      'toast':{
+          deps: ['jquery'],
+          exports: 'toast'
+      }
    },
    waitsecond:0
 });
 
-require(['jquery','base64','service', 'util', 'template','bootstrap','tiny_slider','sticky','functions','webui_popover']
-, function($,base64,service,util,template,bootstrap,tiny_slider,sticky,functions,webui_popover) {
+require(['jquery','base64','service', 'util', 'template','bootstrap','tiny_slider','sticky','functions','webui_popover','toast']
+, function($,base64,service,util,template,bootstrap,tiny_slider,sticky,functions,webui_popover,toast) {
    var jq = $.noConflict();
    files = ["2021-11","2021-10","2021-09"];
    curIndex = 0;
@@ -115,20 +121,32 @@ require(['jquery','base64','service', 'util', 'template','bootstrap','tiny_slide
 
    $("#loadMore").click(function(){
       curIndex++;
-   if(curIndex<files.length) {
-      filename = files[curIndex];
-      service.loadMoreTemplateData(filename).then(function(body){
-         if(body.length > 0) {
-            body.forEach(element => {
-               // base64解码
-               element.description = $.base64.atob(element.description, true);
-               var html = template('tpl-suggest-card', element);
-               $("#suggest").append(html);
-            });
-         }
-      }, function(error){
-         console.log(error);
-      });
-   }
+      if(curIndex<files.length) {
+         filename = files[curIndex];
+         service.loadMoreTemplateData(filename).then(function(body){
+            if(body.length > 0) {
+               body.forEach(element => {
+                  // base64解码
+                  element.description = $.base64.atob(element.description, true);
+                  var html = template('tpl-suggest-card', element);
+                  $("#suggest").append(html);
+               });
+            }
+         }, function(error){
+            console.log(error);
+         });
+      } else {
+         $('body').toast({
+            position:'fixed',
+            content:'已到底',
+            duration:3000,
+            isCenter:true,
+            //background:'#4EA44E',
+            animateIn:'bounceInUp-hastrans',
+            animateOut:'bounceOutDown-hastrans',
+         });
+         $("#loadMore").slideDown('slow');
+         $(".bottom-bar").html("没有了，歇会吧");
+      }
    });
 });
