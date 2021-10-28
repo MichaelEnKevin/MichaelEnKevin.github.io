@@ -53,6 +53,18 @@ define(['assets/js/util/fetch'], function (xhr) {
                 xhr.fetch("./assets/data/data.json"),
                 'json'
             );
+        },
+        loadTopTemplateData: function(filename){
+            return backPromise(
+                xhr.fetch("./assets/data/"+filename+".json"),
+                'json'
+            );
+        },
+        loadMoreTemplateData: function(filename){
+            return backPromise(
+                xhr.fetch("./assets/data/"+filename+".json"),
+                'json'
+            );
         }
     };
 

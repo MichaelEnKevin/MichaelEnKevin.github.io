@@ -20,6 +20,8 @@
 require(['jquery','base64','service', 'util', 'template','bootstrap','tiny_slider','sticky','functions','webui_popover']
 , function($,base64,service,util,template,bootstrap,tiny_slider,sticky,functions,webui_popover) {
    var jq = $.noConflict();
+   files = ["2021-11","2021-10","2021-09"];
+   curIndex = 0;
    // 功能初始化
    // card点击开关toggle事件
    $("body").on("click",".card",function(){
@@ -61,7 +63,9 @@ require(['jquery','base64','service', 'util', 'template','bootstrap','tiny_slide
 
    // 模板内容
    //get source form html
-   service.getTemplateData().then(function(body){
+   // 生活:bg-danger,科技:bg-warning,经济:bg-info,旅行:bg-success
+   var filename = files[curIndex];
+   service.loadTopTemplateData(filename).then(function(body){
       if(body.length > 0) {
          var item = body[0];
          // base64解码
@@ -95,31 +99,36 @@ require(['jquery','base64','service', 'util', 'template','bootstrap','tiny_slide
          }
 
          if(body.length > 4) {
-            var row = '';
             for(var i=4;i<body.length;i++) {
 
-               if(i%4 == 0) {
-                  row = '<div class="row g-4">';
-
-               }
                item = body[i];
                // base64解码
                item.description = $.base64.atob(item.description, true);
-               html = '<div class="col-md-3">';
-               html += template('tpl-common-card', item);
-               html +='</div>';
-               row += html;
-               if((i+1)%4 == 0 || (i+1)==body.length) {
-                  row += '</div>';
-                  $("#common_list").append(row);
-               }
+               html = template('tpl-suggest-card', item);
+               $("#suggest").append(html);
             }
          }
-
-         e.init();
       }
    }, function(error){
       console.log(error);
    });
 
+   $("#loadMore").click(function(){
+      curIndex++;
+   if(curIndex<files.length) {
+      filename = files[curIndex];
+      service.loadMoreTemplateData(filename).then(function(body){
+         if(body.length > 0) {
+            body.forEach(element => {
+               // base64解码
+               element.description = $.base64.atob(element.description, true);
+               var html = template('tpl-suggest-card', element);
+               $("#suggest").append(html);
+            });
+         }
+      }, function(error){
+         console.log(error);
+      });
+   }
+   });
 });

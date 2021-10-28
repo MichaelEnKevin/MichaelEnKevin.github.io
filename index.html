@@ -62,6 +62,9 @@
     padding: 1.4em;
     color: #afbce1;
 }
+.common-card {
+    height: 274px;
+}
 </style>
 
  <script src="http://cdn.bootcss.com/require.js/2.3.2/require.js"></script>
@@ -189,7 +192,7 @@
 </script>
 
 <script id="tpl-common-card" type="text/html">
-    <div class="card">
+    <div class="card common-card">
         <!-- Card img -->
         <div class="position-relative">
             <img class="card-img" src="{{image}}"
@@ -239,6 +242,44 @@
             {{description}}
         </div>
     </div>
+</script>
+
+<script id="tpl-suggest-card" type="text/html">
+    <!-- Card item START -->
+    <div class="col-sm-4">
+        <div class="card">
+            <!-- Card img -->
+            <div class="position-relative">
+                <img class="card-img" src="{{image}}" alt="">
+                <div class="card-img-overlay d-flex align-items-start flex-column p-3">
+                    <!-- Card overlay bottom -->
+                    <div class="w-100 mt-auto">
+                        <!-- Card category -->
+                        <a href="#" class="badge {{category_class}} mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>{{category_name}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body px-0 pt-3">
+                <h4 class="card-title"><a href="#" class="btn-link text-reset fw-bold">{{title}}</a></h4>
+                <p class="card-text">{{description}}</p>
+                <!-- Card info -->
+                <ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
+                    <li class="nav-item">
+                        <div class="nav-link">
+                            <div class="d-flex align-items-center position-relative">
+                                <div class="avatar avatar-xs">
+                                    <img class="avatar-img rounded-circle" src="{{avatar}}" alt="头像">
+                                </div>
+                                <span class="ms-3"><a href="#" class="stretched-link text-reset btn-link">{{author}}</a></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">{{time}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Card item END -->
 </script>
 </head>
 
@@ -331,21 +372,34 @@ Main hero START -->
         </section>
         <!-- =======================
 Main hero END -->
+<!-- =======================
+Main content START -->
+<section class="position-relative">
+	<div class="container" data-sticky-container="">
+		<div class="row">
+			<!-- Main Post START -->
+			<div class="col-lg-12">
+				<!-- Title -->
+				<div class="mb-4">
+					<p>最新推荐</p>
+				</div>
+				<div class="row gy-4" id="suggest">
 
-        <!-- Divider -->
-        <div class="container">
-            <div class="border-bottom border-primary border-2 opacity-1"></div>
-        </div>
-
-        <!-- =======================
-Section START -->
-        <section class="pt-4">
-            <div class="container" id="common_list">
-
-            </div>
-        </section>
-        <!-- =======================
-Section END -->
+				</div>
+				<div class="row gy-4" >
+                    <!-- Load more START -->
+					<div class="col-12 text-center mt-5">
+						<button type="button" id="loadMore" class="btn btn-primary-soft">加载更多 <i class="bi bi-arrow-down-circle ms-2 align-middle"></i></button>
+					</div>
+					<!-- Load more END -->
+				</div>
+			</div>
+			<!-- Main Post END -->
+		</div> <!-- Row end -->
+	</div>
+</section>
+<!-- =======================
+Main content END -->
 
     </main>
     <!-- **************** MAIN CONTENT END **************** -->
