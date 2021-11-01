@@ -1,7 +1,11 @@
-﻿$(function(){
+﻿$(function () {
+    // 返回顶部按钮初始化
+    backTotop();
+
+    // 数据文件
     files = ["2021-11","2021-10","2021-09"];
     curIndex = 0;
-    // 功能初始化
+
     // card点击开关toggle事件
     $("body").on("click",".card",function(){
         $(".description",this).slideToggle("5000");
@@ -38,8 +42,7 @@
         }
     }});
 
-    // 顶级模板内容
-    // 生活:bg-danger,科技:bg-warning,经济:bg-info,旅行:bg-success
+    // 顶级模板内容  (生活:bg-danger,科技:bg-warning,经济:bg-info,旅行:bg-success)
     var filename = files[curIndex];
     $.ajax({url:"./assets/data/"+filename+".json",type: "GET",dataType: "json",success:function(body){
         if(body.length > 0) {
@@ -87,7 +90,7 @@
          }
     }});
 
-    
+    // 加载更多
     $("#loadMore").click(function(){
         curIndex++;
         if(curIndex<files.length) {
@@ -108,9 +111,13 @@
         }
     });
 
-    function loadMoreTemplateData(itemfilename) {
-        $.ajax({url:"./assets/data/"+itemfilename+".json",type: "GET",dataType: "json",success:function(body){
-            if(body.length > 0) {
+});
+
+// 加载更多按钮数据处理函数
+function loadMoreTemplateData(itemfilename) {
+    $.ajax({
+        url: "./assets/data/" + itemfilename + ".json", type: "GET", dataType: "json", success: function (body) {
+            if (body.length > 0) {
                 body.forEach(element => {
                     // base64解码
                     element.description = $.base64.atob(element.description, true);
@@ -118,6 +125,30 @@
                     $("#suggest").append(html);
                 });
             }
-        }});
+        }
+    });
+}
+
+// 返回顶部按钮初始化函数
+function backTotop () {
+    var scrollpos = window.scrollY;
+    var backBtn = $('.back-top');
+    if (typeof !!backBtn && (backBtn) != 'undefined' && backBtn != null) {
+        var add_class_on_scroll = () => backBtn.addClass("back-top-show");
+        var remove_class_on_scroll = () => backBtn.removeClass("back-top-show");
+
+        window.addEventListener('scroll', function () {
+            scrollpos = window.scrollY;
+            if (scrollpos >= 800) {
+                add_class_on_scroll()
+            } else {
+                remove_class_on_scroll()
+            }
+        });
+
+        backBtn[0].addEventListener('click', () => window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        }));
     }
-});
+}
