@@ -45,16 +45,22 @@
 
     // 模板内容  (生活:bg-danger,科技:bg-warning,经济:bg-info,旅行:bg-success)
     $.ajax({url:"./assets/data/"+filename+".json",type: "GET",dataType: "json",success:function(body){
-        if (body.length > 0) {
-            for (var i = 0; i < body.length;i++) {
-                var item = body[i];
-                if (id == item.id) {
-                    // base64解码
-                    item.description = $.base64.atob(item.description, true);
-                    html = template('tpl-right12-card', item);
-                    $("#right12-card").html(html);
-                    break;
+        if (body) {
+            var item = body[id];
+            if (item) {
+                var desc = item.description;
+                // base64解码
+                item.description = $.base64.atob(item.description, true);
+                if (item.content && desc != item.content) {
+                    item.content = $.base64.atob(item.content, true);
+                } else {
+                    delete item.content;
                 }
+                
+                item.id = id;
+                html = template('tpl-article-card', item);
+                $("#article").html(html);
+                $("title").html(item.title);
             }
          }
     }});

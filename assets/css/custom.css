@@ -1,0 +1,11 @@
+.logo:hover {
+    transform: scale(1.2)  rotate(360deg); /*scale(1.4) */
+    transition: all .3s;
+}
+.nav-divider {
+    margin-top: 10px;
+}
+
+.card:hover {
+    cursor:pointer;
+}

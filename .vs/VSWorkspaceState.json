@@ -2,9 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\assets",
+    "\\assets\\css",
+    "\\assets\\data",
     "\\assets\\js",
-    "\\assets\\vendor\\bootstrap\\dist",
-    "\\assets\\vendor\\sticky-js",
     "\\gtag"
   ],
   "SelectedNode": "\\assets\\js\\article.js",

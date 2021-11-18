@@ -12,7 +12,7 @@
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/j-original.png">
+    <link rel="shortcut icon" href="assets/images/j-logo.png">
 
     <!-- Google Font
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,6 +32,8 @@
     <!-- Theme CSS -->
     <link id="style-switch" rel="stylesheet" type="text/css"
           href="assets/css/style.css">
+    <link id="style-switch" rel="stylesheet" type="text/css"
+          href="assets/css/custom.css">
 
     <link rel="stylesheet" type="text/css"
           href="assets/webui-popover/dist/jquery.webui-popover.css">
@@ -60,256 +62,35 @@
             src: url(assets/font/ZhiMangXing-Regular.ttf);
         }
 
-        .description {
-            position: relative;
-            top: 1px;
-            left: 1px;
-            width: 100%;
-            height: 100%;
-            display: none;
-            font-size: 1.4em;
-            padding: 1.4em;
-            color: #afbce1;
-        }
-
         .common-card {
             height: 274px;
         }
     </style>
 
-    <!-- js模板 -->
-    <!-- main信息卡 -->
-    <script id="tpl-main-card" type="text/html">
-        <div class="card card-overlay-bottom card-grid-lg card-bg-scale"
-             style="background-image: url({{image}}); background-position: center left; background-size: cover;">
-            <!-- Card featured -->
-            <span class="card-featured" title="特别推荐">
-                <i class="fas fa-star"></i>
-            </span>
-            <!-- Card Image overlay -->
-            <div class="card-img-overlay d-flex align-items-center p-3 p-sm-4">
-                <div class="w-100 mt-auto">
-                    <!-- Card category -->
-                    <a class="badge {{category_class}} mb-2">
-                        <i class="fas fa-circle me-2 small fw-bold"></i>{{category_name}}
-                    </a>
-                    <!-- Card title -->
-                    <h2 class="text-white h1">
-                        <a class="btn-link stretched-link text-reset">{{title}} </a>
-                    </h2>
-                    <p class="text-white">{{sub_title}}</p>
-                    <!-- Card info -->
-                    <ul class="nav nav-divider text-white-force align-items-center d-none d-sm-inline-block">
-                        <li class="nav-item">
-                            <div class="nav-link">
-                                <div class="d-flex align-items-center text-white position-relative">
-                                    <div class="avatar avatar-sm">
-                                        <img class="avatar-img rounded-circle"
-                                             src="{{avatar}}" alt="头像">
-                                    </div>
-                                    <span class="ms-3">
-                                        <a class="stretched-link text-reset btn-link">{{author}}</a>
-                                    </span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item">{{time}}</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="description">
-                近期，受强冷空气影响，全国多地迎来2021年入秋以来的首场降雪。
-
-                10月6日，国庆假期，河北张家口迎来秋季初雪，张北草原天路银装素裹，雪景如画。
-            </div>
-        </div>
-    </script>
-
-    <!-- 右侧宽card -->
-    <script id="tpl-right12-card" type="text/html">
-        <div class="card card-overlay-bottom card-grid-sm card-bg-scale"
-             style="background-image: url({{image}}); background-position: center left; background-size: cover;">
-            <!-- Card Image -->
-            <!-- Card Image overlay -->
-            <div class="card-img-overlay d-flex align-items-center p-3 p-sm-4">
-                <div class="w-100 mt-auto">
-                    <!-- Card category -->
-                    <a class="badge {{category_class}} mb-2">
-                        <i class="fas fa-circle me-2 small fw-bold"></i>{{category_name}}
-                    </a>
-                    <!-- Card title -->
-                    <h4 class="text-white">
-                        <a class="btn-link stretched-link text-reset">{{title}}</a>
-                    </h4>
-                    <!-- Card info -->
-                    <ul class="nav nav-divider text-white-force align-items-center d-none d-sm-inline-block">
-                        <li class="nav-item position-relative">
-                            <div class="nav-link">
-                                <a class="stretched-link text-reset btn-link">{{author}}</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">{{time}}</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="description">
-                近期，受强冷空气影响，全国多地迎来2021年入秋以来的首场降雪。
-
-                10月6日，国庆假期，河北张家口迎来秋季初雪，张北草原天路银装素裹，雪景如画。
-            </div>
-        </div>
-    </script>
-
-    <script id="tpl-right6-card" type="text/html">
-        <div class="card card-overlay-bottom card-grid-sm card-bg-scale"
-             style="background-image: url({{image}}); background-position: center left; background-size: cover;">
-            <!-- Card Image overlay -->
-            <div class="card-img-overlay d-flex align-items-center p-3 p-sm-4">
-                <div class="w-100 mt-auto">
-                    <!-- Card category -->
-                    <a class="badge {{category_class}} mb-2">
-                        <i class="fas fa-circle me-2 small fw-bold"></i>{{category_name}}
-                    </a>
-                    <!-- Card title -->
-                    <h4 class="text-white">
-                        <a class="btn-link stretched-link text-reset">{{title}}</a>
-                    </h4>
-                    <!-- Card info -->
-                    <ul class="nav nav-divider text-white-force align-items-center d-none d-sm-inline-block">
-                        <li class="nav-item position-relative">
-                            <div class="nav-link">
-                                <a class="stretched-link text-reset btn-link">{{author}}</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">{{time}}</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="description">
-                近期，受强冷空气影响，全国多地迎来2021年入秋以来的首场降雪。
-
-                10月6日，国庆假期，河北张家口迎来秋季初雪，张北草原天路银装素裹，雪景如画。
-            </div>
-        </div>
-    </script>
-
-    <script id="tpl-common-card" type="text/html">
-        <div class="card common-card">
-            <!-- Card img -->
-            <div class="position-relative">
-                <img class="card-img" src="{{image}}"
-                     alt="Card image">
-                <div class="card-img-overlay d-flex align-items-start flex-column p-3">
-                    <!-- Card overlay Top -->
-                    <div class="w-100 mb-auto d-flex justify-content-end">
-                        <div class="text-end ms-auto">
-                            <!-- Card format icon -->
-                            <!-- <div
-                                class="icon-md bg-white-soft bg-blur text-white fw-bold rounded-circle"
-                                title="8.5 rating"></div> -->
-                        </div>
-                    </div>
-                    <!-- Card overlay bottom -->
-                    <div class="w-100 mt-auto">
-                        <a class="badge {{category_class}} mb-2">
-                            <i class="fas fa-circle me-2 small fw-bold"></i>{{category_name}}
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body px-0 pt-3">
-                <h5 class="card-title">
-                    <a class="btn-link text-reset fw-bold">{{title}}</a>
-                </h5>
-                <!-- Card info -->
-                <ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
-                    <li class="nav-item">
-                        <div class="nav-link">
-                            <div class="d-flex align-items-center position-relative">
-                                <div class="avatar avatar-xs">
-                                    <img class="avatar-img rounded-circle"
-                                         src="{{avatar}}" alt="头像">
-                                </div>
-                                <span class="ms-3">
-                                    <a class="stretched-link text-reset btn-link">{{author}}</a>
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item">{{time}}</li>
-                </ul>
-            </div>
-
-            <div class="description">
-                {{description}}
-            </div>
-        </div>
-    </script>
-
-    <script id="tpl-suggest-card" type="text/html">
-        <!-- Card item START -->
-        <div class="col-sm-4">
-            <div class="card">
-                <!-- Card img -->
-                <div class="position-relative">
-                    <img class="card-img" src="{{image}}" alt="">
-                    <div class="card-img-overlay d-flex align-items-start flex-column p-3">
-                        <!-- Card overlay bottom -->
-                        <div class="w-100 mt-auto">
-                            <!-- Card category -->
-                            <a href="#" class="badge {{category_class}} mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>{{category_name}}</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body px-0 pt-3">
-                    <h4 class="card-title"><a href="#" class="btn-link text-reset fw-bold">{{title}}</a></h4>
-                    <p class="card-text">{{description}}</p>
-                    <!-- Card info -->
-                    <ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
-                        <li class="nav-item">
-                            <div class="nav-link">
-                                <div class="d-flex align-items-center position-relative">
-                                    <div class="avatar avatar-xs">
-                                        <img class="avatar-img rounded-circle" src="{{avatar}}" alt="头像">
-                                    </div>
-                                    <span class="ms-3"><a href="#" class="stretched-link text-reset btn-link">{{author}}</a></span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item">{{time}}</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- Card item END -->
-    </script>
 </head>
 
 <body>
     <!-- =======================
-Header START -->
+    Header START -->
     <header class="navbar-light navbar-sticky header-static">
         <div class="navbar-top d-none d-lg-block small">
             <div class="container">
-                <div
-                    class="d-md-flex justify-content-between align-items-center my-2">
+                <div class="d-md-flex justify-content-between align-items-center my-2">
                     <!-- Top bar left -->
                     <ul class="nav">
-                        <li class="nav-item"><span style="font-size: 1.6em;font-family: Zhi Mang Xing;">简洁优质的生活资讯</span></li>
+                        
                     </ul>
                     <!-- Top bar right -->
                     <div class="d-flex align-items-center">
 
                         <ul class="nav">
                             <li class="nav-item"></li>
-                            <li class="nav-item"></li>
+                            <li class="nav-item"><span style="font-size: 1.6em;font-family: Zhi Mang Xing;">简洁优质的生活资讯</span></li>
                         </ul>
                     </div>
                 </div>
                 <!-- Divider -->
-                <div class="border-bottom border-2 border-primary opacity-1" style="width:16%;"></div>
+                <!--<div class="border-bottom border-2 border-primary opacity-1" style="width:16%;"></div>-->
             </div>
         </div>
 
@@ -318,12 +99,12 @@ Header START -->
             <div class="container" style="justify-content: left">
                 <!-- Logo START -->
                 <a class="navbar-brand" href="index.html">
-                    <img class="navbar-brand-item light-mode-item"
-                         src="assets/images/j-original.png" alt="标志"> <img class="navbar-brand-item dark-mode-item"
-                                                                           src="assets/images/j-original.png" alt="标志">
+                    <img class="logo navbar-brand-item light-mode-item"
+                         src="assets/images/j-logo.png" alt="标志"> <img class="logo navbar-brand-item dark-mode-item"
+                                                                       src="assets/images/j-logo.png" alt="标志">
                 </a>
                 <!-- Logo END -->
-                <span><a class="navbar-brand" href="index.html"><span style="font-size: 3em;font-family: 'Zhi Mang Xing', cursive;" class="short_company_name">简优信息</span></a><span style="font-size: 0.6em;"></span></span>
+                <span class="navbar-brand"><span style="font-size: 3em;font-family: 'Zhi Mang Xing', cursive;" class="short_company_name">简优信息</span><span style="font-size: 0.6em;"></span></span>
 
                 <!-- Main navbar START -->
                 <!-- Main navbar END -->
@@ -338,14 +119,19 @@ Header START -->
         <!-- Logo Nav END -->
     </header>
     <!-- =======================
-Header END -->
-
+    Header END -->
     <!-- **************** MAIN CONTENT START **************** -->
     <main>
         <!-- =======================
-    Main hero START -->
+        Main hero START -->
         <section class="pt-4 pb-0 card-grid">
             <div class="container">
+                <div class="row g-4">
+                    <!-- Title -->
+                    <div class="mb-4">
+                        <p>头条推荐</p>
+                    </div>
+                </div>
                 <div class="row g-4">
                     <!-- Left big card -->
                     <div class="col-lg-6" id="main-card">
@@ -375,9 +161,9 @@ Header END -->
             </div>
         </section>
         <!-- =======================
-    Main hero END -->
+        Main hero END -->
         <!-- =======================
-    Main content START -->
+        Main content START -->
         <section class="position-relative">
             <div class="container" data-sticky-container="">
                 <div class="row">
@@ -403,13 +189,12 @@ Header END -->
             </div>
         </section>
         <!-- =======================
-    Main content END -->
+        Main content END -->
 
     </main>
     <!-- **************** MAIN CONTENT END **************** -->
-
     <!-- =======================
-Footer START -->
+    Footer START -->
     <footer class="bg-dark">
         <!-- Footer copyright START -->
         <div class="bg-dark-overlay-3 mt-5">
@@ -418,11 +203,13 @@ Footer START -->
                     <div class="col-md-6">
                         <!-- Copyright -->
                         <div style="font-size: 1.2rem;"
-                            class="copyright text-center text-md-start text-primary-hover text-muted"><span class="company_info"></span> <a class="fs-5 ms-sm-5 ms-md-5 ms-5"
-                                    href="javascript:void(0);"><i
-                                        class="fab fa-qq"></i></a>
-                                  <a class="fs-5 ms-sm-2 ms-md-2 ms-2"
-                                    href="javascript:void(0);" style="cursor:default"><i class="fab fa-weixin"></i></a>
+                             class="copyright text-center text-md-start text-primary-hover text-muted">
+                            <span class="company_info"></span> <a class="fs-5 ms-sm-5 ms-md-5 ms-5"
+                                                                  href="javascript:void(0);">
+                                <i class="fab fa-qq"></i>
+                            </a>
+                            <a class="fs-5 ms-sm-2 ms-md-2 ms-2"
+                               href="javascript:void(0);" style="cursor:default"><i class="fab fa-weixin"></i></a>
                         </div>
                     </div>
                 </div>
@@ -431,8 +218,7 @@ Footer START -->
         <!-- Footer copyright END -->
     </footer>
     <!-- =======================
-Footer END -->
-
+    Footer END -->
     <!-- Back to top -->
     <div class="back-top">
         <i class="bi bi-arrow-up-short"></i>
@@ -445,6 +231,152 @@ Footer END -->
     <script src="assets/js/index.js"></script>
     <script type="text/javascript">
 
+    </script>
+
+    <!-- js模板 -->
+    <!-- main信息卡 -->
+    <script id="tpl-main-card" type="text/html">
+        <div class="card card-overlay-bottom card-grid-lg card-bg-scale"  onclick="window.open('article.html?file={{file}}&id={{id}}','_self')"
+             style="background-image: url({{image}}); background-position: center left; background-size: cover;">
+            <!-- Card featured -->
+            <span class="card-featured" title="特别推荐">
+                <i class="fas fa-star"></i>
+            </span>
+            <!-- Card Image overlay -->
+            <div class="card-img-overlay d-flex align-items-center p-3 p-sm-4">
+                <div class="w-100 mt-auto">
+                    <!-- Card category -->
+                    <a class="badge {{category_class}} mb-2">
+                        <i class="fas fa-circle me-2 small fw-bold"></i>{{category_name}}
+                    </a>
+                    <!-- Card title -->
+                    <h2 class="text-white h1">
+                        <a class="btn-link stretched-link text-reset">{{title}} </a>
+                    </h2>
+                    <p class="text-white">{{sub_title}}</p>
+                    <!-- Card info -->
+                    <ul class="nav nav-divider text-white-force align-items-center d-none d-sm-inline-block">
+                        <li class="nav-item">{{time}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <!-- 右侧宽card -->
+    <script id="tpl-right12-card" type="text/html">
+        <div class="card card-overlay-bottom card-grid-sm card-bg-scale"  onclick="window.open('article.html?file={{file}}&id={{id}}','_self')"
+             style="background-image: url({{image}}); background-position: center left; background-size: cover;">
+            <!-- Card Image -->
+            <!-- Card Image overlay -->
+            <div class="card-img-overlay d-flex align-items-center p-3 p-sm-4">
+                <div class="w-100 mt-auto">
+                    <!-- Card category -->
+                    <a class="badge {{category_class}} mb-2">
+                        <i class="fas fa-circle me-2 small fw-bold"></i>{{category_name}}
+                    </a>
+                    <!-- Card title -->
+                    <h4 class="text-white">
+                        <a class="btn-link stretched-link text-reset">{{title}}</a>
+                    </h4>
+                    <!-- Card info -->
+                    <ul class="nav nav-divider text-white-force align-items-center d-none d-sm-inline-block">
+                        <li class="nav-item">{{time}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script id="tpl-right6-card" type="text/html">
+        <div class="card card-overlay-bottom card-grid-sm card-bg-scale"  onclick="window.open('article.html?file={{file}}&id={{id}}','_self')"
+             style="background-image: url({{image}}); background-position: center left; background-size: cover;">
+            <!-- Card Image overlay -->
+            <div class="card-img-overlay d-flex align-items-center p-3 p-sm-4">
+                <div class="w-100 mt-auto">
+                    <!-- Card category -->
+                    <a class="badge {{category_class}} mb-2">
+                        <i class="fas fa-circle me-2 small fw-bold"></i>{{category_name}}
+                    </a>
+                    <!-- Card title -->
+                    <h4 class="text-white">
+                        <a class="btn-link stretched-link text-reset">{{title}}</a>
+                    </h4>
+                    <!-- Card info -->
+                    <ul class="nav nav-divider text-white-force align-items-center d-none d-sm-inline-block">
+                        <li class="nav-item">{{time}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script id="tpl-common-card" type="text/html">
+        <div class="card common-card card-bg-scale"  onclick="window.open('article.html?file={{file}}&id={{id}}','_self')">
+            <!-- Card img -->
+            <div class="position-relative">
+                <img class="card-img" src="{{image}}"
+                     alt="Card image">
+                <div class="card-img-overlay d-flex align-items-start flex-column p-3">
+                    <!-- Card overlay Top -->
+                    <div class="w-100 mb-auto d-flex justify-content-end">
+                        <div class="text-end ms-auto">
+                            <!-- Card format icon -->
+                            <!-- <div
+                                class="icon-md bg-white-soft bg-blur text-white fw-bold rounded-circle"
+                                title="8.5 rating"></div> -->
+                        </div>
+                    </div>
+                    <!-- Card overlay bottom -->
+                    <div class="w-100 mt-auto">
+                        <a class="badge {{category_class}} mb-2">
+                            <i class="fas fa-circle me-2 small fw-bold"></i>{{category_name}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body px-0 pt-3">
+                <h5 class="card-title">
+                    <a class="btn-link text-reset fw-bold">{{title}}</a>
+                </h5>
+                <!-- Card info -->
+                <ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
+                    <li class="nav-item">{{time}}</li>
+                </ul>
+            </div>
+
+            <div class="description">
+                {{description}}
+            </div>
+        </div>
+    </script>
+
+    <script id="tpl-suggest-card" type="text/html">
+        <!-- Card item START -->
+        <div class="col-sm-4">
+            <div class="card card-bg-scale"  onclick="window.open('article.html?file={{file}}&id={{id}}','_self')">
+                <!-- Card img -->
+                <div class="position-relative">
+                    <img class="card-img" src="{{image}}" alt="">
+                    <div class="card-img-overlay d-flex align-items-start flex-column p-3">
+                        <!-- Card overlay bottom -->
+                        <div class="w-100 mt-auto">
+                            <!-- Card category -->
+                            <a href="#" class="badge {{category_class}} mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>{{category_name}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body px-0 pt-3">
+                    <h4 class="card-title"><a href="#" class="btn-link text-reset fw-bold">{{title}}</a></h4>
+                    <p class="card-text">{{description}}</p>
+                    <!-- Card info -->
+                    <ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
+                        <li class="nav-item">{{time}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Card item END -->
     </script>
 </body>
 </html>

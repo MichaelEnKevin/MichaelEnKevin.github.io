@@ -6,11 +6,6 @@
     files = ["2021-11","2021-10","2021-09"];
     curIndex = 0;
 
-    // card点击开关toggle事件
-    $("body").on("click",".card",function(){
-        $(".description",this).slideToggle("5000");
-    });
-
     // 版权信息内容
     $.ajax({url:"./assets/data/copy.json",type: "GET",dataType: "json",success:function(body){
         if(body.length > 0) {
@@ -45,44 +40,57 @@
     // 顶级模板内容  (生活:bg-danger,科技:bg-warning,经济:bg-info,旅行:bg-success)
     var filename = files[curIndex];
     $.ajax({url:"./assets/data/"+filename+".json",type: "GET",dataType: "json",success:function(body){
-        if(body.length > 0) {
-            var item = body[0];
+        if (body) {
+            var keys = [];
+            for (var key in body) {
+                keys.push(key);
+            }
+            var item = body[keys[0]];
             // base64解码
             item.description = $.base64.atob(item.description, true);
+            item.file = filename;
+            item.id = keys[0];
             var html = template('tpl-main-card', item);
             // main card
             $("#main-card").html(html);
    
-            if(body.length > 1) {
-               item = body[1];
+            if (keys.length > 1) {
+                item = body[keys[1]];
                // base64解码
-               item.description = $.base64.atob(item.description, true);
+                item.description = $.base64.atob(item.description, true);
+                item.file = filename;
+                item.id = keys[1];
                html = template('tpl-right12-card', item);
                $("#right12-card").html(html);
             }
    
-            if(body.length > 2) {
-               item = body[2];
+            if (keys.length > 2) {
+                item = body[keys[2]];
                // base64解码
-               item.description = $.base64.atob(item.description, true);
+                item.description = $.base64.atob(item.description, true);
+                item.file = filename;
+                item.id = keys[2];
                html = template('tpl-right6-card', item);
                $("#right6-card").html(html);
             }
    
-            if(body.length > 3) {
-               item = body[3];
+            if (keys.length > 3) {
+                item = body[keys[3]];
                // base64解码
-               item.description = $.base64.atob(item.description, true);
+                item.description = $.base64.atob(item.description, true);
+                item.file = filename;
+                item.id = keys[3];
                html = template('tpl-right6-card', item);
                $("#right6_1-card").html(html);
             }
    
-            if(body.length > 4) {
-               for(var i=4;i<body.length;i++) {
-   
-                  item = body[i];
+            if (keys.length > 4) {
+                for (var i = 4; i < keys.length;i++) {
+                    item = body[keys[i]];
+                    item.id = keys[i];
                   // base64解码
-                  item.description = $.base64.atob(item.description, true);
+                   item.description = $.base64.atob(item.description, true);
+                   item.file = filename;
                   html = template('tpl-suggest-card', item);
                   $("#suggest").append(html);
                }
@@ -117,10 +125,18 @@
 function loadMoreTemplateData(itemfilename) {
     $.ajax({
         url: "./assets/data/" + itemfilename + ".json", type: "GET", dataType: "json", success: function (body) {
-            if (body.length > 0) {
-                body.forEach(element => {
+            if (body) {
+                var keys = [];
+                for (var key in body) {
+                    keys.push(key);
+                }
+                var item = body[keys[0]];
+                keys.forEach(key => {
+                    var element = body[key];
                     // base64解码
                     element.description = $.base64.atob(element.description, true);
+                    element.file = itemfilename;
+                    element.id = key;
                     var html = template('tpl-suggest-card', element);
                     $("#suggest").append(html);
                 });

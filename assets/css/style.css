@@ -8028,7 +8028,8 @@ fieldset:disabled .btn {
 }
 
 .mb-4 {
-  margin-bottom: 2rem !important;
+    margin-bottom: 1rem !important;
+    margin-top: 2rem !important;
 }
 
 .mb-5 {
@@ -8318,7 +8319,7 @@ fieldset:disabled .btn {
 }
 
 .pt-4 {
-  padding-top: 2rem !important;
+  padding-top: 1rem !important;
 }
 
 .pt-5 {
@@ -13847,7 +13848,7 @@ video {
 }
 
 section {
-  padding-top: 3.5rem;
+  padding-top: 1.5rem;
   padding-bottom: 2.8rem;
 }
 
